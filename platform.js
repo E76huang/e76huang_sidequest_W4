@@ -13,14 +13,13 @@ In JSON, platforms are stored like:
 */
 
 class Platform {
-  constructor({ x, y, w, h }) {
-    // Position is the top-left corner.
+  constructor({ x, y, w, h, nextLevel = null, id = null }) {
     this.x = x;
     this.y = y;
-
-    // Size (width/height).
     this.w = w;
     this.h = h;
+    this.nextLevel = nextLevel; // must exist
+    this.id = id;
   }
 
   draw(fillColor) {

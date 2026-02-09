@@ -21,6 +21,14 @@ let levelIndex = 0;
 let world; // WorldLevel instance (current level)
 let player; // BlobPlayer instance
 
+let platforms = [
+  new Platform({ x: 0, y: 324, w: 640, h: 36 }),
+  new Platform({ x: 120, y: 254, w: 120, h: 12 }),
+  new Platform({ x: 300, y: 204, w: 90, h: 12 }),
+  new Platform({ x: 440, y: 144, w: 130, h: 12 }),
+  new Platform({ x: 300, y: 70, w: 90, h: 12, nextLevel: "Hell Escalator" }), // triggers next level
+];
+
 function preload() {
   // Load the level data from disk before setup runs.
   data = loadJSON("levels.json");
@@ -85,4 +93,9 @@ function loadLevel(i) {
 
   // Apply level settings + respawn.
   player.spawnFromLevel(world);
+}
+
+function loadLevelByName(name) {
+  const i = data.levels.findIndex((l) => l.name === name);
+  if (i >= 0) loadLevel(i);
 }

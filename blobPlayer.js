@@ -132,12 +132,17 @@ class BlobPlayer {
     for (const s of platforms) {
       if (overlapAABB(box, s)) {
         if (this.vy > 0) {
-          // Falling: snap to platform top
+          // Player lands on platform
           box.y = s.y - box.h;
           this.vy = 0;
           this.onGround = true;
+
+          // Check for level transition
+          if (s.nextLevel) {
+            loadLevelByName(s.nextLevel);
+            return;
+          }
         } else if (this.vy < 0) {
-          // Rising: snap to platform bottom (head bump)
           box.y = s.y + s.h;
           this.vy = 0;
         }

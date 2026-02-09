@@ -49,7 +49,17 @@ class WorldLevel {
     };
 
     // Convert raw platform objects into Platform instances.
-    this.platforms = (levelJson.platforms || []).map((p) => new Platform(p));
+    this.platforms = (levelJson.platforms || []).map(
+      (p) =>
+        new Platform({
+          x: p.x,
+          y: p.y,
+          w: p.w,
+          h: p.h,
+          id: p.id,
+          nextLevel: p.nextLevel,
+        }),
+    );
   }
 
   /*
