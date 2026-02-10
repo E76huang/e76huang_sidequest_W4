@@ -81,9 +81,16 @@ class WorldLevel {
   The player draws itself separately, after the world is drawn.
   */
   drawWorld() {
+    // Draw background
     background(color(this.theme.bg));
+
     for (const p of this.platforms) {
-      p.draw(color(this.theme.platform));
+      // If this platform has nextLevel, draw it green
+      if (p.nextLevel) {
+        p.draw(color(0, 255, 0)); // green
+      } else {
+        p.draw(color(this.theme.platform)); // normal platform color
+      }
     }
   }
 }

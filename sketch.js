@@ -21,14 +21,6 @@ let levelIndex = 0;
 let world; // WorldLevel instance (current level)
 let player; // BlobPlayer instance
 
-let platforms = [
-  new Platform({ x: 0, y: 324, w: 640, h: 36 }),
-  new Platform({ x: 120, y: 254, w: 120, h: 12 }),
-  new Platform({ x: 300, y: 204, w: 90, h: 12 }),
-  new Platform({ x: 440, y: 144, w: 130, h: 12 }),
-  new Platform({ x: 300, y: 70, w: 90, h: 12, nextLevel: "Hell Escalator" }), // triggers next level
-];
-
 function preload() {
   // Load the level data from disk before setup runs.
   data = loadJSON("levels.json");
@@ -51,6 +43,15 @@ function draw() {
   // 1) Draw the world (background + platforms)
   world.drawWorld();
 
+  if (world.greenRect) {
+    fill(0, 255, 0); // green
+    rect(
+      world.greenRect.x,
+      world.greenRect.y,
+      world.greenRect.w,
+      world.greenRect.h,
+    );
+  }
   // 2) Update and draw the player on top of the world
   player.update(world.platforms);
   player.draw(world.theme.blob);
@@ -58,7 +59,7 @@ function draw() {
   // 3) HUD
   fill(0);
   text(world.name, 10, 18);
-  text("Move: A/D or ←/→ • Jump: Space/W/↑ • Next: N", 10, 36);
+  text("Move: A/D or ←/→ • Jump: Space/W/↑ • Next: N • Restart: R", 10, 36);
 }
 
 function keyPressed() {
@@ -71,6 +72,11 @@ function keyPressed() {
   if (key === "n" || key === "N") {
     const next = (levelIndex + 1) % data.levels.length;
     loadLevel(next);
+  }
+
+  // Restart the game / go back to first level
+  if (key === "r" || key === "R") {
+    loadLevel(0); // first level index
   }
 }
 

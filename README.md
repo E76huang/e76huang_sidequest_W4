@@ -1,42 +1,24 @@
 ## Project Title
 
-GBDA302 Week 4 Example 5: Blob Platformer (JSON + Classes)
-
----
-
-## Authors
-
-Karen Cochrane and David Han
+Side Quest Week 4: Blob Journey Beyond - Intro Steps & Hell Escalator
 
 ---
 
 ## Description
 
-This matches the structure of the original blob sketch from Week 2 but moves
-details into classes.
+> This Side Quest takes the original code’s platforms to create two distinct levels: Easy and Hard.
+> Uses visual markers to distinguish the “goal platform.”
+> Added a distinguishable colour scheme for the difficult level
+> Players face consequences in the difficulty level
+> If players fall off the map, they have to restart back to the the easy level
 
 ---
 
-## Learning Goals
+## Interaction Instructions
 
-Learning Goals:
-
-- - load JSON in preload()
-- create WorldLevel from JSON
-- create BlobPlayer
-- update + draw each frame
-- handle input events (jump, optional next level)
-
----
-
-## Assets
-
-N/A
-
----
-
-## GenAI
-
-The code was written by Dr. Karen Cochrane and David Han but they used GenAI to write the comments.
+> Move: "A/D or ←/→" to move left or right
+> Press "Space/W/↑" to jump
+> Press "N" to skip to the next level
+> Press "R" to restart
 
 ---
